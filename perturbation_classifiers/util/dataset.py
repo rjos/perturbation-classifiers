@@ -23,10 +23,22 @@ class KeelDataSet:
         self.data = data
         self.inputs = inputs
         self.outputs = outputs
-        self.shape = len(inputs), len(data)
+        self.shape = len(data[0]), len(data)
+        self.ir = self.__imbalance_ratio()
 
     def __get_data(self, attributes):
         return [self.data[self.attributes.index(a)] for a in attributes]
+
+    def __imbalance_ratio(self):
+        labels = self.__get_data(self.outputs)
+        labels = np.concatenate(labels)
+
+        _, count_classes = np.unique(labels, return_counts=True)
+        
+        max_count = np.max(count_classes)
+        min_count = np.min(count_classes)
+
+        return round((max_count / min_count), 2)
 
     def get_data(self):
         
@@ -36,17 +48,15 @@ class KeelDataSet:
         return np.transpose(inputs), np.concatenate(outputs)
 
     def __str__(self):
-        
-        metadata = f"{self.name}:\n"
-        metadata += f"  - Attributes: {self.shape[0]}\n"
-        
+        row_format = "{:<31}" * 5
+
         labels = self.__get_data(self.outputs)
         labels = np.concatenate(labels)
 
         classes = np.unique(labels)
-        metadata += f"  - Classes: {classes.shape[0]}"
 
-        return metadata
+        # metadata = f"{self.name}:\tAttributes: {self.shape[1]}\tSamples: {self.shape[0]}\tClasses: {classes.shape[0]}\tImbalance Ratio: {self.ir}"
+        return row_format.format(f"{self.name} ", *[f"Attributes: {self.shape[1]}", f"Samples: {self.shape[0]}", f"Classes: {classes.shape[0]}", f"IR: {self.ir}"])
 
     def __get_header(self):
         header = f"@relation {self.name}\n"
@@ -97,11 +107,10 @@ def load_keel_file(path):
         lkp = {}
         while line.startswith("@attribute"):
             # Get attribute name
-            match = re.findall(r"\s([a-zA-Z]+)\s", line)
-            attr_name = match[0]
+            attr_name = line.split(" ")[1]
 
             # Get attribute type
-            match = re.findall(r"\s([a-z]+)\s|\[", line)
+            match = re.findall(r"\s([a-z]+)\s{0,1}\[", line)
             if len(match) > 0:
                 attr_type = match[0]
             else:

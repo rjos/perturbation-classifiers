@@ -215,11 +215,11 @@ class sPerC(BasePerC):
         
         # Validate "cluster_validation" parameter
         # TODO: Check when parameter is a pre-defined function
-        if isinstance(self.cluster_validation, str) and self.cluster_validation not in ["auto", "ch", "db", "gap", "sil"]:
+        if isinstance(self.cluster_validation, str) and self.cluster_validation not in ["ch", "db", "gap", "sil"]:
             raise ValueError(
                 'Invalid value for parameter "cluster_validation".'
                 ' "cluster_validation" should be one of these options '
-                '"auto", "ch", "db", "gap", "sil" or a callable'
+                '"ch", "db", "gap", "sil" or a callable'
             )
 
         # Validate "n_clusters_per_class"
