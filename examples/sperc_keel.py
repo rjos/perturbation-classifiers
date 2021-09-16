@@ -6,7 +6,7 @@
 Train sPerC models from keel dataset format
 ====================================================================
 
-In this example we show how to apply PerC model for a
+In this example we show how to apply sPerC models for a
 classification dataset.
 
 """
