@@ -1,6 +1,6 @@
 # coding=utf-8
 
-# Author: Rodolfo José de Oliveira Soares <rodolfoj.soares@gmail.com>
+# Author: Rodolfo J. O. Soares <rodolfoj.soares@gmail.com>
 
 import numpy as np
 from abc import abstractmethod, ABCMeta
@@ -109,7 +109,7 @@ class BasePerC(BaseEstimator, ClassifierMixin):
         """
         # Compute perturbation of each class
         perturbations = self.perturbation(X)
-        return np.round(softmin(perturbations), 4)
+        return softmin(perturbations)
     
     @abstractmethod
     def __validate_parameters(self):

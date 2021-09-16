@@ -1,6 +1,6 @@
 # coding=utf-8
 
-# Author: Rodolfo José de Oliveira Soares <rodolfoj.soares@gmail.com>
+# Author: Rodolfo J. O. Soares <rodolfoj.soares@gmail.com>
 
 from sklearn.metrics import calinski_harabasz_score, davies_bouldin_score, silhouette_score
 from gap_statistic import OptimalK
