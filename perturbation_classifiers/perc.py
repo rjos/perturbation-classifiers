@@ -9,22 +9,26 @@ from perturbation_classifiers.estimation import estimate_mean_vector_per_class, 
 from perturbation_classifiers.perturbation import perturbation_mean, perturbation_covariance, perturbation_combination
 
 class PerC(BasePerC):
+    """Perturbation-based Classifier.
+    """
 
     def __init__(self, mode="auto"):
         super(PerC, self).__init__(mode=mode)
     
     def fit(self, X, y):
-        """[summary]
+        """Fit the perturbation classifiers according to the given training data.
 
         Parameters
         ----------
-        X : [description]
-        
-        y : [description]
+        X : array of shape (n_samples, n_features)
+            The input data.
+            
+        y : array of shape (n_samples)
+            class labels of each example in X.
 
         Returns
         -------
-        [type]: [description]
+        self
         """
         super(PerC, self).fit(X, y)
 
@@ -48,15 +52,17 @@ class PerC(BasePerC):
         return self
     
     def perturbation(self, X):
-        """[summary]
+        """Return the perturbation for sample in X.
 
         Parameters
         ----------
-        X : [description]
+        X : array of shape (n_samples, n_features)
+            The input data.
 
         Returns
         -------
-        [type]: [description]
+        perturbations : array of shape (n_samples, n_classes)
+                        Perturbation estimates for each sample in X.
         """
         super(PerC, self).perturbation(X)
 
@@ -80,11 +86,7 @@ class PerC(BasePerC):
         return perturbations
     
     def _validate_parameters(self):
-        """[summary]
-
-        Raises
-        ------
-        ValueError: [description]
+        """Verify if the input parameters are correct.
         """
         # Validate mode parameter
         if self.mode not in ["auto", "mean", "covariance"]:

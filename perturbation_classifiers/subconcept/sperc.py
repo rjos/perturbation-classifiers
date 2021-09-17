@@ -14,7 +14,7 @@ from perturbation_classifiers.subconcept.clustering import best_k_calinsk_haraba
 from perturbation_classifiers.subconcept.aggregation import min_rule, avg_rule, median_rule, nearest_cluster_rule
 
 class sPerC(BasePerC):
-    """[summary]
+    """subconcept Perturbation-based Classifier (sPerC).
     """
 
     def __init__(self, mode="auto", aggregation_rule="nearest_cluster", cluster_validation="sil", n_clusters_per_class="auto", alpha=0.1, k_means_iteration=100, n_refs_gap = 100, random_state=None, n_jobs=None):
@@ -29,12 +29,15 @@ class sPerC(BasePerC):
         self.n_jobs = n_jobs
 
     def fit(self, X, y):
-        """[summary]
+        """Fit the perturbation classifiers according to the given training data.
 
         Parameters
         ----------
-        X ([type]): [description]
-        y ([type]): [description]
+        X : array of shape (n_samples, n_features)
+            The input data.
+            
+        y : array of shape (n_samples)
+            class labels of each example in X.
 
         Returns
         -------
@@ -149,15 +152,17 @@ class sPerC(BasePerC):
         return self
 
     def perturbation(self, X):
-        """[summary]
+        """Return the perturbation for sample in X.
 
         Parameters
         ----------
-        X : [description]
+        X : array of shape (n_samples, n_features)
+            The input data.
 
         Returns
         -------
-        [type]: [description]
+        perturbations : array of shape (n_samples, n_classes)
+                        Perturbation estimates for each sample in X.
         """
         super(sPerC, self).perturbation(X)
 
@@ -191,10 +196,7 @@ class sPerC(BasePerC):
         return perturbations
     
     def _validate_parameters(self):
-        """[summary]
-
-        Raises:
-            ValueError: [description]
+        """Verify if the input parameters are correct.
         """
         # Validate "mode" parameter
         if self.mode not in ["auto", "mean", "covariance"]:

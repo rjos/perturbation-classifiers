@@ -11,9 +11,9 @@ def min_rule(perturbations, cluster2class):
 
     Parameters
     ----------
-    perturbations ([type]): [description]
+    perturbations : [description]
     
-    cluster2class ([type]): [description]
+    cluster2class : [description]
 
     Returns
     -------
@@ -33,9 +33,9 @@ def avg_rule(perturbations, cluster2class):
 
     Parameters
     ----------
-    perturbations ([type]): [description]
+    perturbations : [description]
         
-    cluster2class ([type]): [description]
+    cluster2class : [description]
 
     Returns
     -------
@@ -55,8 +55,9 @@ def median_rule(perturbations, cluster2class):
 
     Parameters
     ----------
-    perturbations ([type]): [description]
-    cluster2class ([type]): [description]
+    perturbations : [description]
+
+    cluster2class : [description]
 
     Returns
     -------
@@ -76,10 +77,13 @@ def nearest_cluster_rule(X, perturbations, cluster2class, centroids):
 
     Parameters
     ----------
-    X ([type]): [description]
-    perturbations ([type]): [description]
-    cluster2class ([type]): [description]
-    centroids ([type]): [description]
+    X : [description]
+
+    perturbations : [description]
+
+    cluster2class : [description]
+    
+    centroids : [description]
 
     Returns
     -------

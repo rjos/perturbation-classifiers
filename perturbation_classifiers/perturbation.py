@@ -4,30 +4,31 @@
 
 import numpy as np
 
-
 def perturbation_mean(mean_vectors):
-    """[summary]
+    """Compute the perturbation based on mean vectors.
 
     Parameters
     ----------
-    mean_vectors : [description]
+    mean_vectors : array of shape (n_classes, n_features)
+                   The mean vectors for each class.
 
     Returns
     -------
-    [type]: [description]
+    perturbations : array of shape (n_samples, n_classes)
+                    Perturbation estimates for each sample in X.
     """
     
     ndim = mean_vectors.ndim - 1
-    
+
     return np.linalg.norm(mean_vectors, axis=ndim)
 
 
 def perturbation_covariance(covariances_matrix):
-    """[summary]
+    """Compute the perturbation based
 
     Parameters
     ----------
-    covariances_matrix ([type]): [description]
+    covariances_matrix : [description]
 
     Returns
     -------

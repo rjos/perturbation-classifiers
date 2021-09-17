@@ -7,17 +7,21 @@ from gap_statistic import OptimalK
 import numpy as np
 
 def best_k_calinsk_harabasz(X, kmeans_algorithms):
-    """[summary]
+    """Find the best k-value for KMeans algorithms 
+       based on calinsk-harabasz (ch) method.
 
     Parameters
     ----------
-    X ([type]): [description]
+    X : array of shape (n_samples, n_features)
+        The input data.
     
-    kmeans_algorithms ([type]): [description]
+    kmeans_algorithms : list of sklearn.cluster.KMeans
+                        List of KMeans algorithm to be evaluated
 
     Returns
     -------
-    [type]: [description]
+    best_k_means: sklearn.cluster.KMeans
+                  The best KMeans according to calinsk-harabasz method.
     """
     size = len(kmeans_algorithms)
     scores = np.zeros(size, dtype=np.float_)
@@ -32,17 +36,21 @@ def best_k_calinsk_harabasz(X, kmeans_algorithms):
 
 
 def best_k_davies_bouldin(X, kmeans_algorithms):
-    """[summary]
+    """Find the best k-value for KMeans algorithms 
+       based on davies-bouldin (db) method.
 
     Parameters
     ----------
-    X ([type]): [description]
+    X : array of shape (n_samples, n_features)
+        The input data.
     
-    kmeans_algorithms ([type]): [description]
+    kmeans_algorithms : list of sklearn.cluster.KMeans
+                        List of KMeans algorithm to be evaluated
 
     Returns
     -------
-    [type]: [description]
+    best_k_means: sklearn.cluster.KMeans
+                  The best KMeans according to davies-bouldin method.
     """
     size = len(kmeans_algorithms)
     scores = np.zeros(size, dtype=np.float_)
@@ -57,19 +65,24 @@ def best_k_davies_bouldin(X, kmeans_algorithms):
 
 
 def best_k_gap_statistic(X, kmeans_algorithms, n_refs):
-    """[summary]
+    """Find the best k-value for KMeans algorithms 
+       based on Gap Statistic (gap) method.
 
     Parameters
     ----------
-    X ([type]): [description]
+    X : array of shape (n_samples, n_features)
+        The input data.
     
-    kmeans_algorithms ([type]): [description]
+    kmeans_algorithms : list of sklearn.cluster.KMeans
+                        List of KMeans algorithm to be evaluated.
     
-    n_refs ([type]): [description]
+    n_refs : int
+             Number of random reference data sets used as inertia reference to actual data.
 
     Returns
     -------
-
+    best_k_means: sklearn.cluster.KMeans
+                  The best KMeans according to gap statistic method.
     """
 
     k_values = []
@@ -88,17 +101,21 @@ def best_k_gap_statistic(X, kmeans_algorithms, n_refs):
 
 
 def best_k_silhouette(X, kmeans_algorithms):
-    """[summary]
+    """Find the best k-value for KMeans algorithms 
+       based on silhouette (sil) method.
 
     Parameters
     ----------
-    X ([type]): [description]
+    X : array of shape (n_samples, n_features)
+        The input data.
     
-    kmeans_algorithms ([type]): [description]
+    kmeans_algorithms : list of sklearn.cluster.KMeans
+                        List of KMeans algorithm to be evaluated
 
     Returns
     -------
-    [type]: [description]
+    best_k_means: sklearn.cluster.KMeans
+                  The best KMeans according to silhouette method.
     """
     size = len(kmeans_algorithms)
     scores = np.zeros(size, dtype=np.float_)

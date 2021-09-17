@@ -12,7 +12,12 @@ from sklearn.metrics import accuracy_score
 from perturbation_classifiers.util.prob_function import softmin
 
 class BasePerC(BaseEstimator, ClassifierMixin):
-    """[summary]
+    """Base class for Perturbation-based Classifier (PerC) and
+       subconcept Perturbation-based Classifier (sPerC) methods.
+
+    Warning: This class should not be used directly.
+    Use derived classes instead.
+
     """
     __metaclass__ = ABCMeta
 
@@ -22,13 +27,15 @@ class BasePerC(BaseEstimator, ClassifierMixin):
     
     @abstractmethod
     def fit(self, X, y):
-        """[summary]
+        """Fit the perturbation classifiers according to the given training data.
 
         Parameters
         ----------
-        X : [description]
+        X : array of shape (n_samples, n_features)
+            The input data.
             
-        y : [description]
+        y : array of shape (n_samples)
+            class labels of each example in X.
 
         Returns
         -------
@@ -38,15 +45,17 @@ class BasePerC(BaseEstimator, ClassifierMixin):
         X, y = check_X_y(X, y)
     
     def predict(self, X):
-        """[summary]
+        """Predict the class label for each sample in X.
 
         Parameters
         ----------
-        X : [description]
+        X : array of shape (n_samples, n_features)
+            The input data.
 
         Returns
         -------
-        y : [description]
+        predicted_labels : array of shape (n_samples)
+                           Predicted class label for each sample in X.
         """
         # Check is fit had been called
         check_is_fitted(self, "classes_")
@@ -63,15 +72,17 @@ class BasePerC(BaseEstimator, ClassifierMixin):
     
     @abstractmethod
     def perturbation(self, X):
-        """[summary]
+        """Return the perturbation for sample in X.
 
         Parameters
         ----------
-        X : [description]
+        X : array of shape (n_samples, n_features)
+            The input data.
 
         Returns
         -------
-        perturbations : 
+        perturbations : array of shape (n_samples, n_classes)
+                        Perturbation estimates for each sample in X.
         """
         # Check is fit had been called
         check_is_fitted(self, "classes_")
@@ -80,16 +91,20 @@ class BasePerC(BaseEstimator, ClassifierMixin):
         X = check_array(X)
     
     def score(self, X, y):
-        """[summary]
+        """Return the accuracy on the given test data and labels.
 
         Parameters
         ----------
-        X : [description]
-        y : [description]
+        X : array-like of shape (n_samples, n_features)
+            The input data.
+
+        y : array-like of shape (n_samples)
+            class labels of each example in X.
 
         Returns
         -------
-        [type]: [description]
+        score: float
+               accuracy of self.predict(X)
         """
 
         # Compute the prediction of X set
@@ -97,15 +112,17 @@ class BasePerC(BaseEstimator, ClassifierMixin):
         return accuracy_score(y, y_pred)
     
     def predict_proba(self, X):
-        """[summary]
+        """Estimates the posterior probabilities for sample in X.
 
         Parameters
         ----------
-        X : [description]
+        X : array of shape (n_samples, n_features)
+            The input data.
 
         Returns
         -------
-        [type]: [description]
+        predicted_proba : array of shape (n_samples, n_classes)
+                          Probabilities estimates for each sample in X.
         """
         # Compute perturbation of each class
         perturbations = self.perturbation(X)
@@ -113,6 +130,6 @@ class BasePerC(BaseEstimator, ClassifierMixin):
     
     @abstractmethod
     def __validate_parameters(self):
-        """[summary]
+        """Verify if the input parameters are correct.
         """
         pass
