@@ -56,3 +56,5 @@ and here we show an example using the sPerC method:
 
     # Predict new examples
     sperc.predict(X_test)
+
+.. _scikit-learn: http://scikit-learn.org/stable/
