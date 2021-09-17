@@ -1,6 +1,8 @@
 Perturbation Classifiers
 ========
 
+Perturbation Classifiers is an easy-to-use library focused on the implementation of the state-of-the-art techniques for Perturbation-based Classifier (PerC) and subconcept Perturbation-based Classifier (sPerC). The library is is based on scikit-learn_, using the same method signatures: **fit**, **predict** and **score**.
+
 Installation:
 -------------
 
