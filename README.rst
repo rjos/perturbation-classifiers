@@ -12,7 +12,7 @@ The package can be installed using the following command:
     
     # Clone repository
     git clone https://github.com/rjos/perturbation-classifiers.git
-    cd perturbation-classifiers
+    cd perturbation-classifiers/
     
     # Installation lib
     python setup.py install
