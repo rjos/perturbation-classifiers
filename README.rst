@@ -10,11 +10,11 @@ The package can be installed using the following command:
 
 .. code-block:: bash
     
-    % Clone repository
+    # Clone repository
     git clone https://github.com/rjos/perturbation-classifiers.git
-    
-    % Installation lib
     cd perturbation-classifiers
+    
+    # Installation lib
     python setup.py install
 
 
