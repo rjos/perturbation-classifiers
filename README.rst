@@ -1,4 +1,5 @@
-# Perturbation Classifiers
+Perturbation Classifiers
+========
 
 Installation:
 -------------
@@ -41,7 +42,15 @@ Here we show an example using the PerC method:
     # Predict new examples
     perc.predict(X_test)
 
-References:
------------
+and here we show an example using the sPerC method:
 
-.. [1] : Araújo, E.L., Cavalcanti, G.D.C. & Ren, T.I. Perturbation-based classifier. Soft Comput (2020).
+.. code-block:: python
+
+    from perturbation_classifiers.subconcept import sPerC
+
+    # Train a sPerC model
+    sperc = sPerC()
+    sperc.fit(X_train, y_train)
+
+    # Predict new examples
+    sperc.predict(X_test)
