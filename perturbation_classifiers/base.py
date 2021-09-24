@@ -34,7 +34,7 @@ class BasePerC(BaseEstimator, ClassifierMixin):
         X : array of shape (n_samples, n_features)
             The input data.
             
-        y : array of shape (n_samples)
+        y : array of shape (n_samples, )
             class labels of each example in X.
 
         Returns
@@ -54,7 +54,7 @@ class BasePerC(BaseEstimator, ClassifierMixin):
 
         Returns
         -------
-        predicted_labels : array of shape (n_samples)
+        predicted_labels : array of shape (n_samples, )
                            Predicted class label for each sample in X.
         """
         # Check is fit had been called
@@ -98,7 +98,7 @@ class BasePerC(BaseEstimator, ClassifierMixin):
         X : array-like of shape (n_samples, n_features)
             The input data.
 
-        y : array-like of shape (n_samples)
+        y : array-like of shape (n_samples, )
             class labels of each example in X.
 
         Returns

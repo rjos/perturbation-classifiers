@@ -5,21 +5,26 @@
 import numpy as np
 
 def estimate_mean_vector_per_class(X, y, unique_classes, count_classes):
-    """[summary]
+    """Estimate the mean vector for each class
 
     Parameters
     ----------
-    X : [description]
+    X : array of shape (n_samples, n_features)
+        The input data.
 
-    y : [description]
+    y : array of shape (n_samples, )
+        class labels of each example in X.
 
-    unique_classes : [description]
+    unique_classes : array of shape (n_classes,)
+                     The unique class labels 
 
-    count_classes : [description]
+    count_classes : array of shape (n_classes, )
+                    The number of times each of the unique class labels comes up in the database
 
     Returns
     -------
-    [type]: [description]
+    mean_vectors: array of shape (n_classes, n_features)
+                  The mean vectors for each class
     """
 
     # Get the data belongs to each class
@@ -36,19 +41,23 @@ def estimate_mean_vector_per_class(X, y, unique_classes, count_classes):
 
 
 def estimate_delta_mean_vector_per_class(X, mean_vectors, count_classes):
-    """[summary]
+    """Estimate the mean vector for each class after insertion of samples
 
     Parameters
     ----------
-    X : [description]
+    X : array of shape (n_samples, n_features)
+        The input data.
     
-    mean_vectors : [description]
+    mean_vectors : array of shape (n_classes, n_features)
+                   The mean vectors for each class.
     
-    count_classes : [description]
+    count_classes : array of shape (n_classes, )
+                    The number of times each of the unique class labels comes up in the database
 
     Returns
     -------
-    [type]: [description]
+    new_mean_vectors: array of shape (n_classes, n_features)
+                      The new mean vectors for each class after insertion of test samples.
     """
 
     # Compute the mean vector after simulation insert the sample query 
@@ -60,23 +69,29 @@ def estimate_delta_mean_vector_per_class(X, mean_vectors, count_classes):
 
 
 def estimate_covariance_matrix_per_class(X, y, unique_classes, count_classes, mean_vectors):
-    """[summary]
+    """Estimate the covariance matrix for each class
 
     Parameters
     ----------
-    X : [description]
+    X : array of shape (n_samples, n_features)
+        The input data.
+
+    y : array of shape (n_samples)
+        class labels of each example in X.
+
+    unique_classes : array of shape (n_classes,)
+                     The unique class labels .
+
+    count_classes : array of shape (n_classes, )
+                    The number of times each of the unique class labels comes up in the database.
     
-    y : [description]
-    
-    unique_classes : [description]
-    
-    count_classes : [description]
-    
-    mean_vectors : [description]
+    mean_vectors : array of shape (n_classes, n_features)
+                   The mean vector for each class.
 
     Returns
     -------
-    [type]: [description]
+    covariance_matrix: array of shape (n_classes, n_features, n_features)
+                       The covariance matrix for each class.
     """
 
     covariances_matrix = np.zeros((unique_classes.shape[0], X.shape[1], X.shape[1]), dtype=np.float_)
@@ -97,21 +112,26 @@ def estimate_covariance_matrix_per_class(X, y, unique_classes, count_classes, me
 
 
 def estimate_delta_covariance_matrix_per_class(X, mean_vectors, covariances_matrix, count_classes):
-    """[summary]
+    """Estimate the covariance matrix for each class after insertion of samples
 
     Parameters
     ----------
-    X : [description]
+    X : array of shape (n_samples, n_features)
+        The input data.
     
-    mean_vectors : [description]
+    mean_vectors : array of shape (n_classes, n_features)
+                   The mean vector for each class.
     
-    covariances_matrix : [description]
+    covariances_matrix : array of shape (n_classes, n_features, n_features)
+                         The covariance matrix for each class.
     
-    count_classes : [description]
+    count_classes : array of shape (n_classes, )
+                    The number of times each of the unique class labels comes up in the database.
 
     Returns
     -------
-    [type]: [description]
+    new_covariance_matrix: array of shape (n_classes, n_features, n_features)
+                           The new covariance matrix for each class after insertion of test samples.
     """
 
     # Compute difference between each test instance and each mean of the class

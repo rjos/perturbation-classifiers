@@ -14,51 +14,56 @@ def perturbation_mean(mean_vectors):
 
     Returns
     -------
-    perturbations : array of shape (n_samples, n_classes)
-                    Perturbation estimates for each sample in X.
+    perturbations : array of shape (n_classes, )
+                    Perturbation estimates for each class.
     """
-    
     ndim = mean_vectors.ndim - 1
 
     return np.linalg.norm(mean_vectors, axis=ndim)
 
 
 def perturbation_covariance(covariances_matrix):
-    """Compute the perturbation based
+    """Compute the perturbation based on covariances matrix
 
     Parameters
     ----------
-    covariances_matrix : [description]
+    covariances_matrix : array of shape (n_classes, n_features, n_features)
+                         The covariances matrix for each class.
 
     Returns
     -------
-    [type]: [description]
+    perturbations: array of shape (n_classes, )
+                   Perturbation estimates for each class.
     """
-    
     ndim_x = covariances_matrix.ndim - 2
     ndim_y = covariances_matrix.ndim - 1
 
     return np.linalg.norm(covariances_matrix, 'fro', axis=(ndim_x, ndim_y))
 
-
 def perturbation_combination(X, mean_vectors, inverse_covariances_matrix, delta_mean_vectors, delta_covariances_matrix):
-    """[summary]
+    """Compute the perturbation based on combination of mean vectors and covariances matrix
 
     Parameters
     ----------
-    X : [description]
+    X : array of shape (n_samples, n_features)
+        The input data.
     
-    mean_vectors : [description]
+    mean_vectors : array of shape (n_classes, n_features)
+                   The mean vectors for each class.
     
-    inverse_covariances_matrix : [description]
+    inverse_covariances_matrix : array of shape (n_classes, n_features, n_features)
+                                 The pseudo-inverse of covariances matrix for each class.
     
-    delta_mean_vectors : [description]
+    delta_mean_vectors : array of shape (n_classes, n_features)
+                         The new mean vectors for each class after insertion of test samples.
     
-    delta_covariances_matrix : [description]
+    delta_covariances_matrix : array of shape (n_classes, n_features, n_features)
+                               The new covariances matrix for each class after insertion of test samples.
 
     Returns
     -------
-    [type]: [description]
+    perturbations: array of shape (n_classes, )
+                   Perturbation estimates for each class.
     """
     
     # Compute the difference between each test instance and each mean of the class

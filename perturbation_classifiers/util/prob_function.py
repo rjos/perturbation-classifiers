@@ -5,17 +5,22 @@
 import numpy as np
 
 def softmax(vector, theta=1.0):
-    """[summary]
+    """Takes an vector w of S N-element and returns a vectors where each column
+    of the vector sums to 1, with elements exponentially proportional to the
+    respective elements in N.
 
     Parameters
     ----------
-    vector : [description]
+    vector : array of shape = [N,  M]
         
-    theta : [description]. Defaults to 1.0.
+    theta : float (default = 1.0)
+            used as a multiplier  prior to exponentiation
 
     Returns
     -------
-    dist : [description]
+    dist : array of shape = [N, M]
+           Which the sum of each row sums to 1 and the elements are exponentially
+           proportional to the respective elements in N
     """
     
     w = np.atleast_2d(vector)
@@ -24,15 +29,18 @@ def softmax(vector, theta=1.0):
     return dist
 
 def softmin(vector):
-    """[summary]
+    """Takes a vector w of S N-element and return a softmax-based activation function 
+    that is defined as f(x)=softmax(−x).
 
     Parameters
     ----------
-    vector ([type]): [description]
+    vector : array of shape = [N,  M]
 
     Returns
     -------
-    [type]: [description]
+    dist : array of shape = [N, M]
+           Which the sum of each row sums to 1 and the elements are exponentially
+           proportional to the respective elements in N
     """
 
-    return softmax(-1 * vector)
+    return softmax((-1 * vector))

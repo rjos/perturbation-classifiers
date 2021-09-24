@@ -23,7 +23,7 @@ class PerC(BasePerC):
         X : array of shape (n_samples, n_features)
             The input data.
             
-        y : array of shape (n_samples)
+        y : array of shape (n_samples, )
             class labels of each example in X.
 
         Returns

@@ -6,6 +6,9 @@ import numpy as np
 import re
 
 class KeelAttribute:
+    """
+    A class that represent an attribute of keel dataset format.
+    """
     TYPE_REAL, TYPE_INTEGER, TYPE_NOMINAL = ("real", "integer", "nominal")
 
     def __init__(self, attribute_name, attribute_type, attribute_range, attribute_builder):
@@ -15,6 +18,9 @@ class KeelAttribute:
         self.builder = attribute_builder
 
 class KeelDataSet:
+    """
+    A class that represent the keel dataset format.
+    """
     UNKNOWN = '?'
 
     def __init__(self, relation_name, attributes, data, inputs=None, outputs=None):
@@ -30,6 +36,8 @@ class KeelDataSet:
         return [self.data[self.attributes.index(a)] for a in attributes]
 
     def __imbalance_ratio(self):
+        """Compute the imbalance ratio of the dataset
+        """
         labels = self.__get_data(self.outputs)
         labels = np.concatenate(labels)
 
@@ -41,7 +49,8 @@ class KeelDataSet:
         return round((max_count / min_count), 2)
 
     def get_data(self):
-        
+        """Returns (data, target) of the dataset.
+        """
         inputs = self.__get_data(self.inputs)
         outputs = self.__get_data(self.outputs)
 
@@ -59,6 +68,8 @@ class KeelDataSet:
         return row_format.format(f"{self.name} ", *[f"Attributes: {self.shape[1]}", f"Samples: {self.shape[0]}", f"Classes: {classes.shape[0]}", f"IR: {self.ir}"])
 
     def __get_header(self):
+        """Get the header of a keel dataset format.
+        """
         header = f"@relation {self.name}\n"
         
         attributes = []
@@ -77,7 +88,13 @@ class KeelDataSet:
         return header
 
     def save(self, path):
+        """Export the data on keel dataset format.
 
+        Parameters
+        ----------
+        path : str
+               The filepath to save the dataset.
+        """
         with open(path, 'w') as f:
             # Write header of database
             f.write(self.__get_header())
@@ -88,6 +105,18 @@ class KeelDataSet:
             f.write(data)
 
 def load_keel_file(path):
+    """Load a keel dataset format.
+
+    Parameters
+    ----------
+    path : str
+           The filepath of the keel dataset format.
+
+    Returns
+    -------
+    keel_dataset: KeelDataset
+                  The keel dataset format loaded.
+    """
 
     handle = open(path)
     try:

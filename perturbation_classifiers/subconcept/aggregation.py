@@ -7,17 +7,20 @@ import numpy as np
 
 
 def min_rule(perturbations, cluster2class):
-    """[summary]
+    """Compute the minimum perturbation for each sample based on classes's clusters
 
     Parameters
     ----------
-    perturbations : [description]
+    perturbations : array of shape (n_samples, n_clusters)
+                    The cluster estimated perturbation for each sample.
     
-    cluster2class : [description]
+    cluster2class : dict
+                    The mapped cluster to class.
 
     Returns
     -------
-    [type]: [description]
+    perturbations: array of shape (n_samples, n_classes)
+                   The minimum perturbation for each sample.
     """
     classes = np.array(list(cluster2class.values()))
 
@@ -29,17 +32,20 @@ def min_rule(perturbations, cluster2class):
     return perturbations_min
 
 def avg_rule(perturbations, cluster2class):
-    """[summary]
+    """Compute the average perturbation for each sample based on classes's clusters
 
     Parameters
     ----------
-    perturbations : [description]
-        
-    cluster2class : [description]
+    perturbations : array of shape (n_samples, n_clusters)
+                    The cluster estimated perturbation for each sample.
+    
+    cluster2class : dict
+                    The mapped cluster to class.
 
     Returns
     -------
-    [type]: [description]
+    perturbations: array of shape (n_samples, n_classes)
+                   The minimum perturbation for each sample.
     """
     classes = np.array(list(cluster2class.values()))
 
@@ -51,17 +57,20 @@ def avg_rule(perturbations, cluster2class):
     return perturbations_mean
 
 def median_rule(perturbations, cluster2class):
-    """[summary]
+    """Compute the median perturbation for each sample based on classes's clusters
 
     Parameters
     ----------
-    perturbations : [description]
-
-    cluster2class : [description]
+    perturbations : array of shape (n_samples, n_clusters)
+                    The cluster estimated perturbation for each sample.
+    
+    cluster2class : dict
+                    The mapped cluster to class.
 
     Returns
     -------
-    [type]: [description]
+    perturbations: array of shape (n_samples, n_classes)
+                   The minimum perturbation for each sample.
     """
     classes = np.array(list(cluster2class.values()))
 
@@ -73,21 +82,26 @@ def median_rule(perturbations, cluster2class):
     return perturbations_median
 
 def nearest_cluster_rule(X, perturbations, cluster2class, centroids):
-    """[summary]
+    """Compute the perturbation for each sample based on nearest centroids
 
     Parameters
     ----------
-    X : [description]
+    X : array of shape (n_samples, n_features)
+        The input data.
 
-    perturbations : [description]
+    perturbations : array of shape (n_samples, n_clusters)
+                    The cluster estimated perturbation for each sample.
 
-    cluster2class : [description]
+    cluster2class : dict
+                    The mapped cluster to class.
     
-    centroids : [description]
+    centroids : array of shape (n_clusters, n_features)
+                The centroid for each cluster.
 
     Returns
     -------
-    [type]: [description]
+    perturbations: array of shape (n_samples, n_classes)
+                   The minimum perturbation for each sample.
     """
     classes = np.array(list(cluster2class.values()))
 
