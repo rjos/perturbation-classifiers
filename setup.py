@@ -18,12 +18,13 @@ setup(
     maintainer_email='rodolfoj.soares@gmail.com',
     description='Implementation of perturbation-based classifiers',
     long_description=README,
+    long_description_content_type='text/markdown',
     author='Rodolfo J. O. Soares',
     author_email='rodolfoj.soares@gmail.com',
     license="MIT",
     
     classifiers=[
-        'Development Status :: 1 - Alpha',
+        'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
         'Intended Audience :: Science/Research',
         'Programming Language :: Python :: 3.7',
