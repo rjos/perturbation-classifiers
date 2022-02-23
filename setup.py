@@ -7,7 +7,7 @@ from distutils.core import setup
 from setuptools import find_packages
 
 setup_path = os.path.abspath(os.path.dirname(__file__))
-with codecs.open(os.path.join(setup_path, 'README.md'), encoding='utf-8-sig') as f:
+with codecs.open(os.path.join(setup_path, 'README.rst'), encoding='utf-8-sig') as f:
     README = f.read()
 
 setup(
