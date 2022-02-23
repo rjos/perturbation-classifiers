@@ -12,7 +12,7 @@ with codecs.open(os.path.join(setup_path, 'README.md'), encoding='utf-8-sig') as
 
 setup(
     name='perturbation_classifiers',
-    version='0.1.dev',
+    version='0.1',
     url='https://github.com/rjos/perturbation-classifiers',
     maintainer='Rodolfo J. O. Soares',
     maintainer_email='rodolfoj.soares@gmail.com',
@@ -20,6 +20,7 @@ setup(
     long_description=README,
     author='Rodolfo J. O. Soares',
     author_email='rodolfoj.soares@gmail.com',
+    license="MIT",
     
     classifiers=[
         'Development Status :: 1 - Alpha',
@@ -28,6 +29,7 @@ setup(
         'Programming Language :: Python :: 3.7',
         'Topic :: Scientific/Engineering :: Artificial Intelligence',
     ],
+
     install_requires=[
         'scikit-learn>=0.24.2',
         'numpy>=1.21.2',
@@ -37,7 +39,7 @@ setup(
         'gap-stat>=2.0.1',
         'gapstat-rs>=2.0.1',
     ],
-    python_requires='>=3',
+    python_requires='>=3.7',
 
     packages=find_packages()
 )
